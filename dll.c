@@ -39,5 +39,6 @@ DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
 }
 
 int sizeDLL(DLL *items) {
+    assert(items != 0);
     return items->size;
 }
