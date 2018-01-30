@@ -48,6 +48,7 @@ void setNODEprev(NODE *n, NODE *newPrev) {
 
 // Private DLL method prototypes
 static void addToFront(DLL *items, void *value);
+static void addToBack(DLL *items, void *value);
 
 struct DLL {
     NODE *head;
@@ -60,6 +61,7 @@ struct DLL {
     
     // Private methods
     void (*addToFront)(DLL *, void *);
+    void (*addToBack)(DLL *, void *);
 };
 
 DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
@@ -71,6 +73,7 @@ DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
     items->display = d;
     items->free = f;
     items->addToFront = addToFront;
+    items->addToBack = addToBack;
     return items;
 }
 
@@ -81,6 +84,10 @@ void insertDLL(DLL *items, int index, void *value) {
         // Value is to be added at the front of the list
         items->addToFront(items, value);
     }
+    else if (index == items->size) {
+        // Value is to be added at the back of the list
+        items->addToBack(items, value);
+    }
 }
 
 int sizeDLL(DLL *items) {
@@ -89,6 +96,7 @@ int sizeDLL(DLL *items) {
 }
 
 void displayDLL(DLL *items, FILE *fp) {
+    assert(items != 0);
     fprintf(fp, "{{");
     NODE *curr = items->head;
     while (curr != NULL) {
@@ -116,6 +124,20 @@ void addToFront(DLL *items, void *value) {
         // List is non-empty
         setNODEprev(items->head, n);
         items->head = n;
+    }
+    items->size++;
+}
+
+void addToBack(DLL *items, void *value) {
+    assert(items != 0);
+    if (items->size == 0) {
+        // List is empty
+        items->addToFront(items, value);
+    }
+    else {
+        NODE *n = newNODE(value, NULL, items->tail);
+        setNODEnext(items->tail, n);
+        items->tail = n
     }
     items->size++;
 }
