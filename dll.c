@@ -37,3 +37,7 @@ DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
     items->free = f;
     return items;
 }
+
+int sizeDLL(DLL *items) {
+    return items->size;
+}
