@@ -88,6 +88,19 @@ int sizeDLL(DLL *items) {
     return items->size;
 }
 
+void displayDLL(DLL *items, FILE *fp) {
+    fprintf(fp, "{{");
+    NODE *curr = items->head;
+    while (curr != NULL) {
+        items->display(getNODEvalue(curr), fp);
+        curr = curr->next;
+        if (curr != NULL) {
+            fprintf(fp, ",");
+        }
+    }
+    fprintf(fp, "}}");
+}
+
 
 /************************* Private Methods **************************/
 
@@ -95,10 +108,12 @@ void addToFront(DLL *items, void *value) {
     assert(items != 0);
     NODE *n = newNODE(value, items->head, NULL);
     if (items->size == 0) {
+        // List is empty, set head and tail to same node
         items->head = n;
         items->tail = n;
     }
     else {
+        // List is non-empty
         setNODEprev(items->head, n);
         items->head = n;
     }
