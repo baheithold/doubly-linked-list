@@ -8,5 +8,7 @@
 
 int main(void) {
 
+    DLL *items = newDLL(displayINTEGER, freeINTEGER);
+
     return 0;
 }

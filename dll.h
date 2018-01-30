@@ -7,6 +7,7 @@
 #define __DLL_INCLUDED__
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 
 typedef struct DLL DLL;
