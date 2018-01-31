@@ -17,10 +17,10 @@ int main(void) {
     insertDLL(items, sizeDLL(items), newINTEGER(1));
 
     int x = getINTEGER(removeDLL(items, sizeDLL(items)-1));
-    x = getINTEGER(removeDLL(items, sizeDLL(items)-1));
-    x = getINTEGER(removeDLL(items, sizeDLL(items)-1));
-    x = getINTEGER(removeDLL(items, sizeDLL(items)-1));
-    x = getINTEGER(removeDLL(items, sizeDLL(items)-1));
+    x = getINTEGER(removeDLL(items, 1));
+    x = getINTEGER(removeDLL(items, 1));
+    x = getINTEGER(removeDLL(items, 1));
+    x = getINTEGER(removeDLL(items, 0));
 
     printf("List Size: %d\n", sizeDLL(items));
     displayDLL(items, stdout);

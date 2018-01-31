@@ -54,6 +54,7 @@ static void addToBack(DLL *items, void *value);
 static void insertAtIndex(DLL *items,int, void *value);
 static void *removeFromFront(DLL *items);
 static void *removeFromBack(DLL *items);
+static void *removeFromIndex(DLL *items, int index);
 
 struct DLL {
     NODE *head;
@@ -70,6 +71,7 @@ struct DLL {
     void (*insertAtIndex)(DLL *,int, void *);
     void *(*removeFromFront)(DLL *);
     void *(*removeFromBack)(DLL *);
+    void *(*removeFromIndex)(DLL *, int index);
 };
 
 DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
@@ -85,6 +87,7 @@ DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
     items->insertAtIndex = insertAtIndex;
     items->removeFromFront = removeFromFront;
     items->removeFromBack = removeFromBack;
+    items->removeFromIndex = removeFromIndex;
     return items;
 }
 
@@ -120,6 +123,7 @@ void *removeDLL(DLL *items, int index) {
     }
     else {
         // Remove from index
+        oldValue = items->removeFromIndex(items, index);
     }
     return oldValue;
 }
@@ -226,6 +230,36 @@ void *removeFromBack(DLL *items) {
         items->tail = curr;
         setNODEnext(curr, NULL);
         items->size--;
+    }
+    return oldValue;
+}
+
+void *removeFromIndex(DLL *items, int index) {
+    assert(items != 0);
+    void *oldValue;
+    if (index == 0) {
+        oldValue = items->removeFromFront(items);
+    }
+    else if (index == items->size - 1) {
+        oldValue = items->removeFromBack(items);
+    }
+    else {
+        NODE *curr = items->head;
+        while (index > 1) {
+            curr = curr->next;
+            index--;
+        }
+        NODE *oldNode = curr->next;
+        oldValue = getNODEvalue(oldNode);
+        setNODEnext(curr, getNODEnext(oldNode));
+        setNODEprev(getNODEnext(oldNode), curr);
+        items->size--;
+        if (items->size == 0) {
+            // List went empty
+            items->head = NULL;
+            items->tail = NULL;
+        }
+        free(oldNode);
     }
     return oldValue;
 }
