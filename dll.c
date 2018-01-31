@@ -4,6 +4,8 @@
  */
 
 #include "dll.h"
+#include <stdlib.h>
+#include <assert.h>
 
 typedef struct node {
     void *value;
