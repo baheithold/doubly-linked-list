@@ -10,12 +10,13 @@ int main(void) {
 
     DLL *items = newDLL(displayINTEGER, freeINTEGER);
 
-    insertDLL(items, 0, newINTEGER(1));
-    insertDLL(items, 0, newINTEGER(9));
-    insertDLL(items, 0, newINTEGER(2));
-    insertDLL(items, 0, newINTEGER(6));
-    insertDLL(items, 0, newINTEGER(5));
+    insertDLL(items, sizeDLL(items), newINTEGER(5));
+    insertDLL(items, sizeDLL(items), newINTEGER(6));
+    insertDLL(items, sizeDLL(items), newINTEGER(2));
+    insertDLL(items, sizeDLL(items), newINTEGER(9));
+    insertDLL(items, sizeDLL(items), newINTEGER(1));
 
+    printf("List Size: %d\n", sizeDLL(items));
     displayDLL(items, stdout);
     printf("\n");
 

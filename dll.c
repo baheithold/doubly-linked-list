@@ -49,6 +49,7 @@ void setNODEprev(NODE *n, NODE *newPrev) {
 // Private DLL method prototypes
 static void addToFront(DLL *items, void *value);
 static void addToBack(DLL *items, void *value);
+static void insertAtIndex(DLL *items, void *value);
 
 struct DLL {
     NODE *head;
@@ -62,6 +63,7 @@ struct DLL {
     // Private methods
     void (*addToFront)(DLL *, void *);
     void (*addToBack)(DLL *, void *);
+    void (*insertAtIndex)(DLL *, void *);
 };
 
 DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
@@ -74,6 +76,7 @@ DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
     items->free = f;
     items->addToFront = addToFront;
     items->addToBack = addToBack;
+    items->insertAtIndex = insertAtIndex;
     return items;
 }
 
@@ -87,6 +90,10 @@ void insertDLL(DLL *items, int index, void *value) {
     else if (index == items->size) {
         // Value is to be added at the back of the list
         items->addToBack(items, value);
+    }
+    else {
+        // Value is to be inserted at an index between 1 and items->size - 1
+        items->insertAtIndex(items, index, value);
     }
 }
 
@@ -137,7 +144,29 @@ void addToBack(DLL *items, void *value) {
     else {
         NODE *n = newNODE(value, NULL, items->tail);
         setNODEnext(items->tail, n);
-        items->tail = n
+        items->tail = n;
     }
     items->size++;
+}
+
+void insertAtIndex(DLL *items, int index, void *value) {
+    assert(items != 0);
+    assert(index >= 0 && index <= items->size);
+    if (index == 0) {
+        items->addToFront(items, value);
+    }
+    else if (index == items->size) {
+        items->addToBack(items, value);
+    }
+    else {
+        NODE *curr = items->head;
+        while (index > 1) {
+            curr = curr->next;
+            index--;
+        }
+        NODE *n = newNODE(value, curr->next, curr);
+        setNODEprev(curr->next, n);
+        setNODEnext(curr, n);
+        items->size++;
+    }
 }
