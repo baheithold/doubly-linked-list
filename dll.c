@@ -133,6 +133,26 @@ int sizeDLL(DLL *items) {
     return items->size;
 }
 
+void *getDLL(DLL *items, int index) {
+    // TODO: Can I do better?
+    assert(items != 0);
+    assert(index >= 0 && index < items->size);
+    if (index == 0) {
+        return getNODEvalue(items->head);
+    }
+    else if (index == items->size - 1) {
+        return getNODEvalue(items->tail);
+    }
+    else {
+        NODE *curr = items->head;
+        while (index > 0) {
+            curr = getNODEnext(curr);
+            index--;
+        }
+        return getNODEvalue(curr);
+    }
+}
+
 void displayDLL(DLL *items, FILE *fp) {
     assert(items != 0);
     fprintf(fp, "{{");
