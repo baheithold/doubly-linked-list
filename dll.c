@@ -49,7 +49,8 @@ void setNODEprev(NODE *n, NODE *newPrev) {
 // Private DLL method prototypes
 static void addToFront(DLL *items, void *value);
 static void addToBack(DLL *items, void *value);
-static void insertAtIndex(DLL *items, void *value);
+static void insertAtIndex(DLL *items,int, void *value);
+static void *removeFromFront(DLL *items);
 
 struct DLL {
     NODE *head;
@@ -63,7 +64,8 @@ struct DLL {
     // Private methods
     void (*addToFront)(DLL *, void *);
     void (*addToBack)(DLL *, void *);
-    void (*insertAtIndex)(DLL *, void *);
+    void (*insertAtIndex)(DLL *,int, void *);
+    void *(*removeFromFront)(DLL *);
 };
 
 DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
@@ -77,6 +79,7 @@ DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
     items->addToFront = addToFront;
     items->addToBack = addToBack;
     items->insertAtIndex = insertAtIndex;
+    items->removeFromFront = removeFromFront;
     return items;
 }
 
@@ -95,6 +98,24 @@ void insertDLL(DLL *items, int index, void *value) {
         // Value is to be inserted at an index between 1 and items->size - 1
         items->insertAtIndex(items, index, value);
     }
+}
+
+void *removeDLL(DLL *items, int index) {
+    assert(items != 0);
+    assert(items->size > 0);
+    assert(index >= 0 && index < items->size);
+    void *oldValue;
+    if (index == 0) {
+        // Remove from front
+        oldValue = items->removeFromFront(items);
+    }
+    else if (index == items->size - 1) {
+        // Remove from back
+    }
+    else {
+        // Remove from index
+    }
+    return oldValue;
 }
 
 int sizeDLL(DLL *items) {
@@ -169,4 +190,17 @@ void insertAtIndex(DLL *items, int index, void *value) {
         setNODEnext(curr, n);
         items->size++;
     }
+}
+
+void *removeFromFront(DLL *items) {
+    assert(items != 0);
+    NODE *oldHead = items->head;
+    void *oldValue = getNODEvalue(oldHead);
+    items->head = getNODEnext(oldHead);
+    items->size--;
+    if (items->size == 0) {
+        items->tail = NULL;
+    }
+    free(oldHead);
+    return oldValue;
 }
