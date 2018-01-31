@@ -20,6 +20,7 @@ int main(void) {
     x = getINTEGER(removeDLL(items, sizeDLL(items)-1));
     x = getINTEGER(removeDLL(items, sizeDLL(items)-1));
     x = getINTEGER(removeDLL(items, sizeDLL(items)-1));
+    x = getINTEGER(removeDLL(items, sizeDLL(items)-1));
 
     printf("List Size: %d\n", sizeDLL(items));
     displayDLL(items, stdout);
