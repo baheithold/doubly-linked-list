@@ -147,11 +147,7 @@ void *getDLL(DLL *items, int index) {
         return getNODEvalue(items->tail);
     }
     else {
-        NODE *curr = items->head;
-        while (index > 0) {
-            curr = getNODEnext(curr);
-            index--;
-        }
+        NODE *curr = items->getNodeAtIndex(items, index);
         return getNODEvalue(curr);
     }
 }
