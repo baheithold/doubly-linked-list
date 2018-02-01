@@ -135,13 +135,29 @@ void *removeDLL(DLL *items, int index) {
 
 void unionDLL(DLL *recipient, DLL *donor) {
     assert(recipient != 0 && donor != 0);
-    setNODEnext(recipient->tail, donor->head);
-    setNODEprev(donor->head, recipient->tail);
-    recipient->tail = donor->tail;
-    recipient->size += donor->size;
-    donor->head = NULL;
-    donor->tail = NULL;
-    donor->size = 0;
+    if (recipient->size == 0 && donor->size == 0) {
+        return;
+    }
+    else if (recipient->size > 0 && donor->size == 0) {
+        return;
+    }
+    else if (recipient->size == 0 && donor->size > 0) {
+        recipient->head = donor->head;
+        recipient->tail = donor->tail;
+        recipient->size = donor->size;
+        donor->head = NULL;
+        donor->tail = NULL;
+        donor->size = 0;
+    }
+    else {
+        setNODEnext(recipient->tail, donor->head);
+        setNODEprev(donor->head, recipient->tail);
+        recipient->tail = donor->tail;
+        recipient->size += donor->size;
+        donor->head = NULL;
+        donor->tail = NULL;
+        donor->size = 0;
+    }
 }
 
 
