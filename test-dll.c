@@ -8,20 +8,32 @@
 
 int main(void) {
 
-    DLL *items = newDLL(displayINTEGER, freeINTEGER);
+    DLL *recipient = newDLL(displayINTEGER, freeINTEGER);
+    DLL *donor = newDLL(displayINTEGER, freeINTEGER);
 
-    insertDLL(items, sizeDLL(items), newINTEGER(5));
-    insertDLL(items, sizeDLL(items), newINTEGER(6));
-    insertDLL(items, sizeDLL(items), newINTEGER(2));
-    insertDLL(items, sizeDLL(items), newINTEGER(9));
-    insertDLL(items, sizeDLL(items), newINTEGER(1));
+    insertDLL(recipient, sizeDLL(recipient), newINTEGER(1));
+    insertDLL(recipient, sizeDLL(recipient), newINTEGER(2));
+    insertDLL(recipient, sizeDLL(recipient), newINTEGER(3));
+    insertDLL(donor, sizeDLL(donor), newINTEGER(4));
+    insertDLL(donor, sizeDLL(donor), newINTEGER(5));
+    insertDLL(donor, sizeDLL(donor), newINTEGER(6));
 
-    printf("List Size: %d\n", sizeDLL(items));
-    displayDLL(items, stdout);
+    printf("Recipient before union: ");
+    displayDLL(recipient, stdout);
     printf("\n");
-    displayDLLdebug(items, stdout);
+    printf("Donor before union: ");
+    displayDLL(donor, stdout);
     printf("\n");
 
-    freeDLL(items);
+    unionDLL(recipient, donor);
+    printf("Recipient after union: ");
+    displayDLL(recipient, stdout);
+    printf("\n");
+    printf("Donor after union: ");
+    displayDLL(donor, stdout);
+    printf("\n");
+
+    freeDLL(recipient);
+    freeDLL(donor);
     return 0;
 }

@@ -133,10 +133,17 @@ void *removeDLL(DLL *items, int index) {
     return oldValue;
 }
 
-int sizeDLL(DLL *items) {
-    assert(items != 0);
-    return items->size;
+void unionDLL(DLL *recipient, DLL *donor) {
+    assert(recipient != 0 && donor != 0);
+    setNODEnext(recipient->tail, donor->head);
+    setNODEprev(donor->head, recipient->tail);
+    recipient->tail = donor->tail;
+    recipient->size += donor->size;
+    donor->head = NULL;
+    donor->tail = NULL;
+    donor->size = 0;
 }
+
 
 void *getDLL(DLL *items, int index) {
     // TODO: Can I do better?
@@ -176,6 +183,11 @@ void *setDLL(DLL *items, int index, void *value) {
         oldValue = setNODEvalue(n, value);
     }
     return oldValue;
+}
+
+int sizeDLL(DLL *items) {
+    assert(items != 0);
+    return items->size;
 }
 
 void displayDLL(DLL *items, FILE *fp) {
