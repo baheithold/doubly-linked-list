@@ -26,8 +26,10 @@ void *getNODEvalue(NODE *n) {
     return n->value;
 }
 
-void setNODEvalue(NODE *n, void *value) {
+void *setNODEvalue(NODE *n, void *value) {
+    void *oldValue = getNODEvalue(n);
     n->value = value;
+    return oldValue;
 }
 
 NODE *getNODEnext(NODE *n) {
@@ -150,6 +152,29 @@ void *getDLL(DLL *items, int index) {
         NODE *curr = items->getNodeAtIndex(items, index);
         return getNODEvalue(curr);
     }
+}
+
+void *setDLL(DLL *items, int index, void *value) {
+    assert(items != 0);
+    assert(index >= 0 && index <= items->size);
+    void *oldValue = NULL;
+    if (index == 0) {
+        // set value of head
+        oldValue = setNODEvalue(items->head, value);
+    }
+    else if (index == items->size - 1) {
+        // set value of tail
+        oldValue = setNODEvalue(items->tail, value);
+    }
+    else if (index == items->size) {
+        // Add new NODE to end of list
+        items->addToBack(items, value);
+    }
+    else {
+        NODE *n = items->getNodeAtIndex(items, index);
+        oldValue = setNODEvalue(n, value);
+    }
+    return oldValue;
 }
 
 void displayDLL(DLL *items, FILE *fp) {
