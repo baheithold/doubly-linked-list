@@ -1,6 +1,7 @@
 /*
  * File:    dll.h
  * Author:  Brett Heithold
+ * Description: Interface file for the doubly-linked list class.
  */
 
 #ifndef __DLL_INCLUDED__
