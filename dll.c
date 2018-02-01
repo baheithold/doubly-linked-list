@@ -55,6 +55,7 @@ static void insertAtIndex(DLL *items,int, void *value);
 static void *removeFromFront(DLL *items);
 static void *removeFromBack(DLL *items);
 static void *removeFromIndex(DLL *items, int index);
+static NODE *getNodeAtIndex(DLL *items, int index);
 
 struct DLL {
     NODE *head;
@@ -71,7 +72,8 @@ struct DLL {
     void (*insertAtIndex)(DLL *,int, void *);
     void *(*removeFromFront)(DLL *);
     void *(*removeFromBack)(DLL *);
-    void *(*removeFromIndex)(DLL *, int index);
+    void *(*removeFromIndex)(DLL *, int);
+    NODE *(*getNodeAtIndex)(DLL *, int);
 };
 
 DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
@@ -88,6 +90,7 @@ DLL *newDLL(void (*d)(void *, FILE *), void (*f)(void *)) {
     items->removeFromFront = removeFromFront;
     items->removeFromBack = removeFromBack;
     items->removeFromIndex = removeFromIndex;
+    items->getNodeAtIndex = getNodeAtIndex;
     return items;
 }
 
@@ -264,12 +267,9 @@ void *removeFromIndex(DLL *items, int index) {
         oldValue = items->removeFromBack(items);
     }
     else {
-        NODE *curr = items->head;
-        while (index > 1) {
-            curr = curr->next;
-            index--;
-        }
-        NODE *oldNode = curr->next;
+        // get node prev to index
+        NODE *curr = getNodeAtIndex(items, index - 1);
+        NODE *oldNode = getNODEnext(curr);
         oldValue = getNODEvalue(oldNode);
         setNODEnext(curr, getNODEnext(oldNode));
         setNODEprev(getNODEnext(oldNode), curr);
@@ -282,4 +282,13 @@ void *removeFromIndex(DLL *items, int index) {
         free(oldNode);
     }
     return oldValue;
+}
+
+NODE *getNodeAtIndex(DLL *items, int index) {
+    NODE *curr = items->head;
+    while (index > 0) {
+        curr = getNODEnext(curr);
+        index--;
+    }
+    return curr;
 }
