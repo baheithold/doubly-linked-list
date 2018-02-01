@@ -192,6 +192,24 @@ void displayDLL(DLL *items, FILE *fp) {
     fprintf(fp, "}}");
 }
 
+void displayDLLdebug(DLL *items, FILE *fp) {
+    assert(items != 0);
+    fprintf(fp, "head->{{");
+    NODE *curr = items->head;
+    while (curr != NULL) {
+        items->display(getNODEvalue(curr), fp);
+        if (getNODEnext(curr) != NULL) {
+            fprintf(fp, ",");
+        }
+        curr = getNODEnext(curr);
+    }
+    fprintf(fp, "}},tail->{{");
+    if (items->size > 0) {
+        items->display(getNODEvalue(items->tail), fp);
+    }
+    fprintf(fp, "}}");
+}
+
 void freeDLL(DLL *items) {
     assert(items != 0);
     NODE *curr = items->head;

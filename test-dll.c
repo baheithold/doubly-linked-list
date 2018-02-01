@@ -16,11 +16,10 @@ int main(void) {
     insertDLL(items, sizeDLL(items), newINTEGER(9));
     insertDLL(items, sizeDLL(items), newINTEGER(1));
 
-    INTEGER *i = removeDLL(items, 0);
-    freeINTEGER(i);
-
     printf("List Size: %d\n", sizeDLL(items));
     displayDLL(items, stdout);
+    printf("\n");
+    displayDLLdebug(items, stdout);
     printf("\n");
 
     freeDLL(items);
