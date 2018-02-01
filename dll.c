@@ -213,11 +213,8 @@ void insertAtIndex(DLL *items, int index, void *value) {
         items->addToBack(items, value);
     }
     else {
-        NODE *curr = items->head;
-        while (index > 1) {
-            curr = curr->next;
-            index--;
-        }
+        // get node prev to node at index
+        NODE *curr = items->getNodeAtIndex(items, index - 1);
         NODE *n = newNODE(value, curr->next, curr);
         setNODEprev(curr->next, n);
         setNODEnext(curr, n);
@@ -268,7 +265,7 @@ void *removeFromIndex(DLL *items, int index) {
     }
     else {
         // get node prev to index
-        NODE *curr = getNodeAtIndex(items, index - 1);
+        NODE *curr = items->getNodeAtIndex(items, index - 1);
         NODE *oldNode = getNODEnext(curr);
         oldValue = getNODEvalue(oldNode);
         setNODEnext(curr, getNODEnext(oldNode));
