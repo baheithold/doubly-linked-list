@@ -155,6 +155,7 @@ void *getDLL(DLL *items, int index) {
 }
 
 void *setDLL(DLL *items, int index, void *value) {
+    // TODO: Am I right? Can I do better?
     assert(items != 0);
     assert(index >= 0 && index <= items->size);
     void *oldValue = NULL;
@@ -189,6 +190,21 @@ void displayDLL(DLL *items, FILE *fp) {
         }
     }
     fprintf(fp, "}}");
+}
+
+void freeDLL(DLL *items) {
+    assert(items != 0);
+    NODE *curr = items->head;
+    NODE *tmp;
+    while (curr != NULL) {
+        if (items->free != NULL) {
+            items->free(getNODEvalue(curr));
+        }
+        tmp = curr;
+        curr = getNODEnext(curr);
+        free(tmp);
+    }
+    free(items);
 }
 
 
