@@ -145,19 +145,16 @@ void unionDLL(DLL *recipient, DLL *donor) {
         recipient->head = donor->head;
         recipient->tail = donor->tail;
         recipient->size = donor->size;
-        donor->head = NULL;
-        donor->tail = NULL;
-        donor->size = 0;
     }
     else {
         setNODEnext(recipient->tail, donor->head);
         setNODEprev(donor->head, recipient->tail);
         recipient->tail = donor->tail;
         recipient->size += donor->size;
+    }
         donor->head = NULL;
         donor->tail = NULL;
         donor->size = 0;
-    }
 }
 
 
