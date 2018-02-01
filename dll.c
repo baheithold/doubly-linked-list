@@ -158,7 +158,7 @@ void displayDLL(DLL *items, FILE *fp) {
     NODE *curr = items->head;
     while (curr != NULL) {
         items->display(getNODEvalue(curr), fp);
-        curr = curr->next;
+        curr = getNODEnext(curr);
         if (curr != NULL) {
             fprintf(fp, ",");
         }
