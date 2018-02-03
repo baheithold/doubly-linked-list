@@ -126,63 +126,63 @@ test: all
 	echo Testing Doubly-Linked List 
 	@echo Running dll-0-0 tester...
 	@./dll-0-0 > ./testing/myResults/results-0-0
-	@diff ./testing/hisResults/results-0-0 ./testing/myResults/results-0-0
+	@diff ./testing/expectedResults/results-0-0 ./testing/myResults/results-0-0
 	@echo
 	@echo Running dll-0-1 tester...
 	@./dll-0-1 > ./testing/myResults/results-0-1
-	@diff ./testing/hisResults/results-0-1 ./testing/myResults/results-0-1
+	@diff ./testing/expectedResults/results-0-1 ./testing/myResults/results-0-1
 	@echo
 	@echo Running dll-0-2 tester...
 	@./dll-0-2 > ./testing/myResults/results-0-2
-	@diff ./testing/hisResults/results-0-2 ./testing/myResults/results-0-2
+	@diff ./testing/expectedResults/results-0-2 ./testing/myResults/results-0-2
 	@echo
 	@echo Running dll-0-3 tester...
 	@./dll-0-3 > ./testing/myResults/results-0-3
-	@diff ./testing/hisResults/results-0-3 ./testing/myResults/results-0-3
+	@diff ./testing/expectedResults/results-0-3 ./testing/myResults/results-0-3
 	@echo
 	@echo Running dll-0-4 tester...
 	@./dll-0-4 > ./testing/myResults/results-0-4
-	@diff ./testing/hisResults/results-0-4 ./testing/myResults/results-0-4
+	@diff ./testing/expectedResults/results-0-4 ./testing/myResults/results-0-4
 	@echo
 	@echo Running dll-0-5 tester...
 	@./dll-0-5 > ./testing/myResults/results-0-5
-	@diff ./testing/hisResults/results-0-5 ./testing/myResults/results-0-5
+	@diff ./testing/expectedResults/results-0-5 ./testing/myResults/results-0-5
 	@echo
 	@echo Running dll-0-6 tester...
 	@./dll-0-6 > ./testing/myResults/results-0-6
-	@diff ./testing/hisResults/results-0-6 ./testing/myResults/results-0-6
+	@diff ./testing/expectedResults/results-0-6 ./testing/myResults/results-0-6
 	@echo
 	@echo Running dll-0-7 tester...
 	@./dll-0-7 > ./testing/myResults/results-0-7
-	@diff ./testing/hisResults/results-0-7 ./testing/myResults/results-0-7
+	@diff ./testing/expectedResults/results-0-7 ./testing/myResults/results-0-7
 	@echo
 	@echo Running dll-0-8 tester...
 	@./dll-0-8 > ./testing/myResults/results-0-8
-	@diff ./testing/hisResults/results-0-8 ./testing/myResults/results-0-8
+	@diff ./testing/expectedResults/results-0-8 ./testing/myResults/results-0-8
 	@echo
 	@echo Running dll-0-9 tester...
 	@./dll-0-9 > ./testing/myResults/results-0-9
-	@diff ./testing/hisResults/results-0-9 ./testing/myResults/results-0-9
+	@diff ./testing/expectedResults/results-0-9 ./testing/myResults/results-0-9
 	@echo
 	@echo Running dll-0-10 tester...
 	@./dll-0-10 > ./testing/myResults/results-0-10
-	@diff ./testing/hisResults/results-0-10 ./testing/myResults/results-0-10
+	@diff ./testing/expectedResults/results-0-10 ./testing/myResults/results-0-10
 	@echo
 	@echo Running dll-0-11 tester...
 	@./dll-0-11 > ./testing/myResults/results-0-11
-	@diff ./testing/hisResults/results-0-11 ./testing/myResults/results-0-11
+	@diff ./testing/expectedResults/results-0-11 ./testing/myResults/results-0-11
 	@echo
 	@echo Running dll-0-12 tester...
 	@./dll-0-12 > ./testing/myResults/results-0-12
-	@diff ./testing/hisResults/results-0-12 ./testing/myResults/results-0-12
+	@diff ./testing/expectedResults/results-0-12 ./testing/myResults/results-0-12
 	@echo
 	@echo Running dll-0-13 tester...
 	@./dll-0-13 > ./testing/myResults/results-0-13
-	@diff ./testing/hisResults/results-0-13 ./testing/myResults/results-0-13
+	@diff ./testing/expectedResults/results-0-13 ./testing/myResults/results-0-13
 	@echo
 	@echo Running dll-0-14 tester...
 	@./dll-0-14 > ./testing/myResults/results-0-14
-	@diff ./testing/hisResults/results-0-14 ./testing/myResults/results-0-14
+	@diff ./testing/expectedResults/results-0-14 ./testing/myResults/results-0-14
 
 valgrind: all 
 	valgrind dll-0-0
