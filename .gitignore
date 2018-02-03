@@ -36,6 +36,20 @@
 *.x86_64
 *.hex
 test-dll
+dll-0-0
+dll-0-1
+dll-0-2
+dll-0-3
+dll-0-4
+dll-0-5
+dll-0-6
+dll-0-7
+dll-0-8
+dll-0-9
+dll-0-10
+dll-0-11
+dll-0-12
+dll-0-13
 dll-0-14
 
 # Debug files
