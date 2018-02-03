@@ -524,10 +524,24 @@ void *removeFromIndex(DLL *items, int index) {
  *  Description: This method returns the NODE at the given index.
  */
 NODE *getNodeAtIndex(DLL *items, int index) {
-    NODE *curr = items->head;
-    while (index > 0) {
-        curr = getNODEnext(curr);
-        index--;
+    // FIXME
+    NODE *curr;
+    if (items->size - index <= index) {
+        // traverse from the tail of the list
+        curr = items->tail;
+        int newIndex = items->size - index - 1;
+        while (newIndex > 0) {
+            curr = getNODEprev(curr);
+            newIndex--;
+        }
+    }
+    else {
+        // traverse from the head of the list
+        curr = items->head;
+        while (index > 0) {
+            curr = getNODEnext(curr);
+            index--;
+        }
     }
     return curr;
 }
