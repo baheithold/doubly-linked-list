@@ -123,7 +123,7 @@ string.o: string.c string.h
 
 
 test: all 
-	echo Testing Doubly-Linked List 
+	@echo Testing Doubly-Linked List 
 	@echo Running dll-0-0 tester...
 	@./dll-0-0 > ./testing/myResults/results-0-0
 	@diff ./testing/expectedResults/results-0-0 ./testing/myResults/results-0-0
