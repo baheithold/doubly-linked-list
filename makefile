@@ -67,49 +67,49 @@ dll-0-14: $(OBJS14)
 dll.o: dll.c dll.h
 	gcc $(OOPTS) dll.c
 
-dll-0-0.o:	./testing/dll-0-0.c dll.h
+dll-0-0.o:	./testing/dll-0-0.c dll.h integer.h
 	gcc $(OOPTS) ./testing/dll-0-0.c
 
-dll-0-1.o:	./testing/dll-0-1.c dll.h
+dll-0-1.o:	./testing/dll-0-1.c dll.h real.h
 	gcc $(OOPTS) ./testing/dll-0-1.c
 
-dll-0-2.o:	./testing/dll-0-2.c dll.h
+dll-0-2.o:	./testing/dll-0-2.c dll.h string.h
 	gcc $(OOPTS) ./testing/dll-0-2.c
 
-dll-0-3.o:	./testing/dll-0-3.c dll.h
+dll-0-3.o:	./testing/dll-0-3.c dll.h integer.h
 	gcc $(OOPTS) ./testing/dll-0-3.c
 
-dll-0-4.o:	./testing/dll-0-4.c dll.h
+dll-0-4.o:	./testing/dll-0-4.c dll.h integer.h
 	gcc $(OOPTS) ./testing/dll-0-4.c
 
-dll-0-5.o:	./testing/dll-0-5.c dll.h
+dll-0-5.o:	./testing/dll-0-5.c dll.h real.h
 	gcc $(OOPTS) ./testing/dll-0-5.c
 
-dll-0-6.o:	./testing/dll-0-6.c dll.h
+dll-0-6.o:	./testing/dll-0-6.c dll.h real.h
 	gcc $(OOPTS) ./testing/dll-0-6.c
 
-dll-0-7.o:	./testing/dll-0-7.c dll.h
+dll-0-7.o:	./testing/dll-0-7.c dll.h integer.h
 	gcc $(OOPTS) ./testing/dll-0-7.c
 
 dll-0-8.o:	./testing/dll-0-8.c dll.h
 	gcc $(OOPTS) ./testing/dll-0-8.c
 
-dll-0-9.o:	./testing/dll-0-9.c dll.h
+dll-0-9.o:	./testing/dll-0-9.c dll.h integer.h
 	gcc $(OOPTS) ./testing/dll-0-9.c
 
-dll-0-10.o:	./testing/dll-0-10.c dll.h
+dll-0-10.o:	./testing/dll-0-10.c dll.h integer.h
 	gcc $(OOPTS) ./testing/dll-0-10.c
 
-dll-0-11.o:	./testing/dll-0-11.c dll.h
+dll-0-11.o:	./testing/dll-0-11.c dll.h real.h
 	gcc $(OOPTS) ./testing/dll-0-11.c
 
-dll-0-12.o:	./testing/dll-0-12.c dll.h
+dll-0-12.o:	./testing/dll-0-12.c dll.h real.h
 	gcc $(OOPTS) ./testing/dll-0-12.c
 
-dll-0-13.o:	./testing/dll-0-13.c dll.h
+dll-0-13.o:	./testing/dll-0-13.c dll.h integer.h
 	gcc $(OOPTS) ./testing/dll-0-13.c
 
-dll-0-14.o:	./testing/dll-0-14.c dll.h
+dll-0-14.o:	./testing/dll-0-14.c dll.h integer.h
 	gcc $(OOPTS) ./testing/dll-0-14.c
 
 integer.o: integer.c integer.h
